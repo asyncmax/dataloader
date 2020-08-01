@@ -241,7 +241,7 @@ var enqueuePostPromiseJob =
     } :
     typeof setImmediate === 'function' ?
       setImmediate :
-      (setTimeout: any);
+      (fn => {setTimeout(fn, 0);});
 
 // Private: cached resolved Promise instance
 var resolvedPromise;

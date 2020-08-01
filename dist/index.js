@@ -230,7 +230,9 @@ var enqueuePostPromiseJob = typeof process === 'object' && typeof process.nextTi
   resolvedPromise.then(function () {
     process.nextTick(fn);
   });
-} : typeof setImmediate === 'function' ? setImmediate : setTimeout; // Private: cached resolved Promise instance
+} : typeof setImmediate === 'function' ? setImmediate : function (fn) {
+  setTimeout(fn, 0);
+}; // Private: cached resolved Promise instance
 
 var resolvedPromise; // Private: Describes a batch of requests
 
